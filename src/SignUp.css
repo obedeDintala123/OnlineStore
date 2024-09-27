@@ -1,0 +1,114 @@
+.Up-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 350px;
+  padding: 15px 8px;
+}
+
+.Up-container h1 {
+  color: #3a89ff;
+  text-align: center;
+}
+
+.Up-container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Up-container form > .nome-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Up-container form > .nome-content input {
+  padding: 10px 20px;
+  border: 1px solid;
+  border-radius: 3px;
+  outline: none;
+}
+
+.Up-container form > .email-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Up-container form > .email-content input {
+  padding: 10px 20px;
+  border: 1px solid;
+  border-radius: 3px;
+  outline: none;
+}
+
+.Up-container form > .senha-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.Up-container form > .senha-content input {
+  padding: 10px 20px;
+  border: 1px solid;
+  border-radius: 3px;
+  outline: none;
+}
+
+.Up-container form > button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 3px;
+  background: #3a89ff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.Up-container a {
+  text-decoration: none;
+  color: #3a89ff;
+}
+
+.message-container {
+  width: 20%;
+  background: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    /* Sombra leve para a parte superior */ 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  animation: slowBottom 5s ease forwards;
+}
+
+@keyframes slowBottom {
+  0% {
+    top: -10%;
+  }
+
+  50% {
+    top: 10%;
+  }
+
+  100% {
+    top: -10%;
+  }
+}
+
+@media only screen and (max-width: 768px){
+  .message-container {
+    width: 60%;
+  }
+}

@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./Header";
+import Produtos from "./Produtos";
+import { useState, useEffect } from "react";
 
-function App() {
+export default function App() {
+  const [searchProduto, setSearchProduto] = useState([]);
+  const [produtos, setProdutos] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost/LojaOnline-Database/produtos.php")
+      .then((response) => response.json())
+      .then((data) => {
+        setProdutos(data);
+        setSearchProduto(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, []);
+
+  const handleSearch = (term) => {
+    const filteredProdutos = produtos.filter(
+      (produto) => produto.nome.toLowerCase().includes(term.toLowerCase()) // Filtra os produtos pelo nome
+    );
+    setSearchProduto(filteredProdutos); // Atualiza a lista filtrada
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container_page_principal">
+      <Header onSearch={handleSearch} produtos={searchProduto}/>
+      <Produtos produtos={searchProduto} />
     </div>
   );
 }
-
-export default App;
