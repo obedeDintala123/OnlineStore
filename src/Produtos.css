@@ -82,17 +82,17 @@
   gap: 20px;
 }
 
-.back-button{
-    width: 15%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    padding: 10px;
-    border: none;
-    background: #3a89ff;
-    color: #fff;
-    cursor: pointer;
+.back-button {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+  border: none;
+  background: #3a89ff;
+  color: #fff;
+  cursor: pointer;
 }
 
 .productView-content {
@@ -156,7 +156,7 @@
   border: 2px solid #fff;
   border-radius: 5px;
   cursor: pointer;
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
 }
 
 .size-buttons button:hover {
@@ -195,6 +195,21 @@
   background: none;
   color: #fff;
   font-weight: 500;
+  cursor: pointer;
+}
+
+.quantidade-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.preco-quantidade-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.preco-quantidade-content svg {
   cursor: pointer;
 }
 
@@ -242,9 +257,9 @@
     grid-template-columns: 1fr;
   }
 
-  .back-button{
+  .back-button {
     width: 45%;
-}
+  }
 
   .buy-container {
     position: absolute;
@@ -253,7 +268,6 @@
     transform: translate(-50%, -50%);
     width: 250px;
     padding: 0;
-    background: red;
   }
 }
 
