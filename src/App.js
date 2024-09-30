@@ -7,7 +7,7 @@ export default function App() {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost/LojaOnline-Database/produtos.php")
+    fetch("https://cp1.awardspace.net/file-manager/www#produtos.php;action=edit")
       .then((response) => response.json())
       .then((data) => {
         setProdutos(data);
