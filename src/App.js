@@ -7,7 +7,7 @@ export default function App() {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
-    fetch("https://cp1.awardspace.net/file-manager/www#produtos.php;action=edit")
+    fetch('https://cp1.awardspace.net/file-manager/www#produtos.php;action=edit', { mode: 'no-cors' })
       .then((response) => response.json())
       .then((data) => {
         setProdutos(data);
