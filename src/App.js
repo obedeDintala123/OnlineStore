@@ -7,7 +7,7 @@ export default function App() {
   const [produtos, setProdutos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost/LojaOnline-Database/produtos.php")
+    fetch("https://back-end-online-store.vercel.app/api/produtos.php")
       .then((response) => response.json())
       .then((data) => {
         setProdutos(data);
