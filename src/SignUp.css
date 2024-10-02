@@ -90,7 +90,7 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
-  animation: slowBottom 5s ease forwards;
+  animation: slowBottom 3s ease forwards;
 }
 
 @keyframes slowBottom {

@@ -41,7 +41,7 @@ export default function SignUp() {
           event.target.reset();
           setInterval(() => {
             navegate("/");
-          }, 4000);
+          }, 3000);
         } else {
           console.error("Error: Erro ao adicionar Usuário");
         }
