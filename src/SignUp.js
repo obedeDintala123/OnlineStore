@@ -3,6 +3,7 @@ import "./SignUp.css";
 
 export default function SignUp() {
   const navegate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     let container = document.body;
@@ -10,7 +11,10 @@ export default function SignUp() {
     div.className = "message-container";
     const message = document.querySelector(".message-container");
     const formData = new FormData(event.target);
-    const userInitial = localStorage.setItem("userInitial", event.target.email.value.charAt(0));
+    const userInitial = localStorage.setItem(
+      "userInitial",
+      event.target.email.value.charAt(0)
+    );
 
     fetch("https://back-end-online-store.vercel.app/api/criarClientes.php", {
       method: "POST",
@@ -37,7 +41,11 @@ export default function SignUp() {
           console.error("Error: Erro ao adicionar Usuário");
         }
       })
-      .catch((error) => console.error("Error: " + error));
+      .catch((error) => {
+        console.error("Fetch error: ", error); // Log the error for debugging
+        div.innerHTML = "Erro ao adicionar Usuário";
+        container.appendChild(div);
+      });
   };
   return (
     <div className="Up-container">
