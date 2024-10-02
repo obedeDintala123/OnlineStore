@@ -5,7 +5,7 @@ export default function SignIn() {
   const [users, setUsers] = useState([]);
   const inputEmail = useRef();
   useEffect(() => {
-    fetch("http://localhost/LojaOnline-Database/clientes.php")
+    fetch("https://back-end-online-store.vercel.app/api/clientes.php")
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);

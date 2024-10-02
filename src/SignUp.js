@@ -12,7 +12,7 @@ export default function SignUp() {
     const formData = new FormData(event.target);
     const userInitial = localStorage.setItem("userInitial", event.target.email.value.charAt(0));
 
-    fetch("http://localhost/LojaOnline-Database/criarClientes.php", {
+    fetch("https://back-end-online-store.vercel.app/api/criarClientes.php", {
       method: "POST",
       body: formData,
     })
