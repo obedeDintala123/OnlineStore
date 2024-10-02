@@ -6,12 +6,45 @@ import localization from "./Imagens-LojaOnline/marcador (5) 1.svg";
 import favorite from "./Imagens-LojaOnline/coracao 2.svg";
 import cart from "./Imagens-LojaOnline/carrinho-de-compras 1.svg";
 import "./Header.css";
+import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Header({ onSearch }) {
   const navegate = useNavigate();
   const signIn = localStorage.getItem("userInitial");
   const signUp = localStorage.getItem("userInitial");
+  const userNameSignIn = localStorage.getItem("userName");
+  const userNameSignUp = localStorage.getItem("userName");
+  const inputNameSignIn = useRef();
+  const inputEmailSignIn = useRef();
+  const inputNameSignUp = useRef();
+  const inputEmailSignUp = useRef();
+
+  useEffect(() => {
+    // Atribui os valores aos inputs após a montagem do componente
+    if (inputNameSignIn.current) {
+      inputNameSignIn.current.value = userNameSignIn || ""; // Previne valores nulos
+    }
+
+    if (inputEmailSignIn.current) {
+      inputEmailSignIn.current.value = signIn || ""; // Previne valores nulos
+    }
+
+    if (inputNameSignUp.current) {
+      inputNameSignUp.current.value = userNameSignUp || ""; // Previne valores nulos
+    }
+
+    if (inputEmailSignUp.current) {
+      inputEmailSignUp.current.value = signUp || ""; // Previne valores nulos
+    }
+  }, [signIn, signUp]);
+
+  const handleLogOut = () => {
+    localStorage.removeItem("userInitial");
+    localStorage.removeItem("userName");
+    navegate("/");
+  };
+
   const handleSearch = (event) => {
     event.preventDefault();
     const searchTerm = event.target.search.value;
@@ -22,9 +55,9 @@ export default function Header({ onSearch }) {
     navegate("/sign-in");
   };
 
-  const SignUp = () =>{
+  const SignUp = () => {
     navegate("/sign-up");
-  }
+  };
 
   const categorias = [
     "Men's clothing",
@@ -71,6 +104,20 @@ export default function Header({ onSearch }) {
     }
   }
 
+  function openMenuBar() {
+    let container = document.querySelector(".navBar-container");
+    container.style.display = "flex";
+    container.style.animation = "openNavBar .4s linear forwards";
+  }
+
+  function closeMenuBar() {
+    let container = document.querySelector(".navBar-container");
+    container.style.animation = "closeNavBar .4s linear forwards";
+    setTimeout(() => {
+      container.style.display = "none";
+    }, 400);
+  }
+
   return (
     <header className="header-container">
       <div className="header-content1">
@@ -111,23 +158,137 @@ export default function Header({ onSearch }) {
           </form>
         </div>
         {signIn ? (
-    <div className="user-container">
-      <span>{signIn.toUpperCase().charAt(0)}</span>
-    </div>
-  ) : signUp ? (
-    <div className="user-container">
-      <span>{signUp.toUpperCase().charAt(0)}</span>
-    </div>
-  ) : (
-    <div className="header-buttons-content">
-      <button className="signIn-button" onClick={SignIn}>
-        Sign In
-      </button>
-      <button className="signUp-button" onClick={SignUp}>
-        Sign Up
-      </button>
-    </div>
-  )}
+          <div className="user-column">
+            <div className="user-container">
+              <span>{signIn.toUpperCase().charAt(0)}</span>
+            </div>
+          </div>
+        ) : signUp ? (
+          <div className="user-column">
+            <div className="user-container">
+              <span>{signUp.toUpperCase().charAt(0)}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="header-buttons-content">
+            <button className="signIn-button" onClick={SignIn}>
+              Sign In
+            </button>
+            <button className="signUp-button" onClick={SignUp}>
+              Sign Up
+            </button>
+          </div>
+        )}
+
+        <div className="menu">
+          <button onClick={openMenuBar}>
+            <svg
+              color="white"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              class="bi bi-list"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div className="navBar-container">
+          <div className="header-navBar">
+            <h1>OnlineStore</h1>
+            <svg
+              onClick={closeMenuBar}
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="currentColor"
+              class="bi bi-x"
+              viewBox="0 0 16 16"
+            >
+              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+            </svg>
+          </div>
+
+          {signIn ? (
+            <>
+              <div className="userNav-container">
+                <span>{signIn.toUpperCase().charAt(0)}</span>
+              </div>
+              <div className="userInfo">
+              <div>
+              <label htmlFor="inputName">Name</label>
+                <input
+                  type="text"
+                  id="inputName"
+                  name="name"
+                  ref={inputNameSignIn} readOnly
+                />
+              </div>
+              <div>
+              <label htmlFor="inputEmail">Email</label>
+                <input
+                  type="text"
+                  id="inputEmail"
+                  name="name"
+                  ref={inputEmailSignIn} readOnly
+                />
+              </div>
+                  <button className="edite-button">Edit Profile</button>
+                  <button className="logOut-button" onClick={handleLogOut}>Log Out</button>
+              </div>
+            </>
+          ) : signUp ? (
+            <>
+              <div className="userNav-container">
+                <span>{signUp.toUpperCase().charAt(0)}</span>
+              </div>
+              <div className="userInfo">
+                <label htmlFor="inputName">Name</label>
+                <input
+                  type="text"
+                  id="inputName"
+                  name="name"
+                  ref={inputNameSignUp} readOnly
+                />
+
+                <label htmlFor="inputEmail">Email</label>
+                <input
+                  type="email"
+                  id="inputEmail"
+                  name="email"
+                  ref={inputEmailSignUp} readOnly
+                />
+
+                <button>Edit Profile</button>
+                <button className="logOut-button" onClick={handleLogOut}>Log Out</button>
+              </div>
+            </>
+          ) : (
+            <>
+              <form method="post" onSubmit={handleSearch}>
+                <input
+                  type="text"
+                  placeholder="Search OnlineStore"
+                  name="search"
+                />
+                <button type="submit">
+                  <img src={search} alt="search-icon" />
+                </button>
+              </form>
+
+              <div className="navBar-buttons">
+                <button onClick={SignUp}>Sign Up</button>
+                <button onClick={SignIn}>Sign In</button>
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       <div className="header-content3">
@@ -135,12 +296,28 @@ export default function Header({ onSearch }) {
           <nav className="navegation-content">
             <button onClick={dropdownCategories}>
               <span>Categories</span>
-              <img className="down" src={down} alt="down" width={15} height={15} />
+              <img
+                className="down"
+                src={down}
+                alt="down"
+                width={15}
+                height={15}
+              />
             </button>
             <button onClick={dropdownDeliver}>
-              <img className="localization" src={localization} alt="geolocation-icon" />
+              <img
+                className="localization"
+                src={localization}
+                alt="geolocation-icon"
+              />
               <span>Deliver to</span>
-              <img className="down" src={down} alt="down" width={15} height={15} />
+              <img
+                className="down"
+                src={down}
+                alt="down"
+                width={15}
+                height={15}
+              />
             </button>
           </nav>
         </div>
