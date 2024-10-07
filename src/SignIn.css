@@ -28,7 +28,20 @@
   gap: 5px;
 }
 
+.In-container form > .password-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .In-container form > .email-content input {
+  padding: 10px 20px;
+  border: 1px solid;
+  border-radius: 3px;
+  outline: none;
+}
+
+.In-container form > .password-content input {
   padding: 10px 20px;
   border: 1px solid;
   border-radius: 3px;
@@ -77,6 +90,7 @@
 }
 
 .message-container {
+  width: 60%;
   background: #fff;
   padding: 10px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),

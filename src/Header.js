@@ -13,25 +13,14 @@ export default function Header({ onSearch }) {
   const navegate = useNavigate();
   const signIn = localStorage.getItem("userInitial");
   const signUp = localStorage.getItem("userInitial");
-  const userNameSignIn = localStorage.getItem("userName");
-  const userNameSignUp = localStorage.getItem("userName");
-  const inputNameSignIn = useRef();
   const inputEmailSignIn = useRef();
-  const inputNameSignUp = useRef();
   const inputEmailSignUp = useRef();
+  const inputPasswordSignIn = useRef();
+  const inputPasswordSignUp = useRef();
 
   useEffect(() => {
-    // Atribui os valores aos inputs após a montagem do componente
-    if (inputNameSignIn.current) {
-      inputNameSignIn.current.value = userNameSignIn || ""; // Previne valores nulos
-    }
-
     if (inputEmailSignIn.current) {
       inputEmailSignIn.current.value = signIn || ""; // Previne valores nulos
-    }
-
-    if (inputNameSignUp.current) {
-      inputNameSignUp.current.value = userNameSignUp || ""; // Previne valores nulos
     }
 
     if (inputEmailSignUp.current) {
@@ -69,14 +58,16 @@ export default function Header({ onSearch }) {
   ];
 
   function dropdownCategories() {
-    const dropdownDiv = document.querySelector(".dropdownCategories-content");
+    let dropdownDiv = document.querySelector(".dropdownCategories-content");
+
     if (dropdownDiv) {
-      dropdownDiv.remove();
+      dropdownDiv.remove(); // Remove o dropdown se ele já existir
     } else {
       let div = document.createElement("div");
       let container = document.querySelector(".header-content3");
       div.className = "dropdownCategories-content";
 
+      // Gera os itens de categoria
       categorias.forEach((categoria) => {
         let item = document.createElement("a");
         item.href = "#Men-section";
@@ -85,22 +76,75 @@ export default function Header({ onSearch }) {
       });
 
       container.appendChild(div);
+
+      // Atualiza a referência do dropdownDiv após a criação
+      dropdownDiv = div;
+
+      // Adiciona o evento para fechar ao clicar fora
+      const closeDropdown = (event) => {
+        // Verifica se o clique foi fora do dropdown ou do container
+        if (
+          !dropdownDiv.contains(event.target) &&
+          !container.contains(event.target)
+        ) {
+          dropdownDiv.remove(); // Remove o dropdown
+          document.removeEventListener("click", closeDropdown); // Remove o listener após fechar
+        }
+      };
+
+      // Adiciona o evento ao corpo do documento
+      setTimeout(() => {
+        document.addEventListener("click", closeDropdown);
+      }, 0); // Usa um timeout para garantir que o clique inicial no botão não feche o dropdown imediatamente
     }
   }
 
   function dropdownDeliver() {
-    const dropdownDiv = document.querySelector(".dropdownDeliver-content");
+    // Verifica se o dropdown já existe
+    let dropdownDiv = document.querySelector(".dropdownDeliver-content");
 
     if (dropdownDiv) {
-      dropdownDiv.remove();
+      dropdownDiv.remove(); // Remove o dropdown se já estiver presente
     } else {
+      // Cria o formulário dropdown
       let form = document.createElement("form");
       let container = document.querySelector(".header-content3");
       form.className = "dropdownDeliver-content";
       form.method = "post";
       form.innerHTML =
-        '<label htmlFor="country">Deliver to</label><select id="country" name="country"><option name="angola">Angola</option><option name="brasil">Brasil</option><option name="canada">Canada</option><option name="china">China</option></select><label htmlFor="idioma">Language</label><select id="idioma" name="idioma"> <option name="pt">Português</option><option name="en">English</option><option name="fr">Français</option><option name="mn">Mandarim</option></select><label htmlFor="moeda">Currency</label><select id="moeda" name="moeda"> <option name="eur">EUR</option><option name="usd">USD</option> <option name="aoa">AOA</option></select> <button type="submit">Submit</button>';
+        '<label for="country">Deliver to</label>' +
+        '<select id="country" name="country">' +
+        '<option name="angola">Angola</option>' +
+        '<option name="brasil">Brasil</option>' +
+        '<option name="canada">Canada</option>' +
+        '<option name="china">China</option>' +
+        "</select>" +
+        '<label for="idioma">Language</label>' +
+        '<select id="idioma" name="idioma">' +
+        '<option name="pt">Português</option>' +
+        '<option name="en">English</option>' +
+        '<option name="fr">Français</option>' +
+        '<option name="mn">Mandarim</option>' +
+        "</select>" +
+        '<label for="moeda">Currency</label>' +
+        '<select id="moeda" name="moeda">' +
+        '<option name="eur">EUR</option>' +
+        '<option name="usd">USD</option>' +
+        '<option name="aoa">AOA</option>' +
+        "</select>" +
+        '<button type="submit">Submit</button>';
       container.appendChild(form);
+
+      // Atualiza a referência do dropdownDiv depois de criar o formulário
+      dropdownDiv = form;
+
+      // Adiciona o evento para fechar o dropdown ao clicar fora dele
+      document.body.addEventListener("click", function closeDropdown(event) {
+        if (!dropdownDiv.contains(event.target) && event.target !== container) {
+          dropdownDiv.remove(); // Remove o dropdown se clicar fora dele
+          document.body.removeEventListener("click", closeDropdown); // Remove o evento após fechar
+        }
+      });
     }
   }
 
@@ -142,6 +186,7 @@ export default function Header({ onSearch }) {
           <h1
             onClick={() => {
               window.location.reload();
+              navegate("/");
             }}
           >
             OnlineStore
@@ -221,26 +266,30 @@ export default function Header({ onSearch }) {
                 <span>{signIn.toUpperCase().charAt(0)}</span>
               </div>
               <div className="userInfo">
-              <div>
-              <label htmlFor="inputName">Name</label>
-                <input
-                  type="text"
-                  id="inputName"
-                  name="name"
-                  ref={inputNameSignIn} readOnly
-                />
-              </div>
-              <div>
-              <label htmlFor="inputEmail">Email</label>
-                <input
-                  type="text"
-                  id="inputEmail"
-                  name="name"
-                  ref={inputEmailSignIn} readOnly
-                />
-              </div>
-                  <button className="edite-button">Edit Profile</button>
-                  <button className="logOut-button" onClick={handleLogOut}>Log Out</button>
+                <div>
+                  <label htmlFor="inputEmail">Email</label>
+                  <input
+                    type="text"
+                    id="inputEmail"
+                    name="name"
+                    ref={inputEmailSignIn}
+                    readOnly
+                  />
+                </div>
+                <div>
+                  <label htmlFor="inputPasswprd">Password</label>
+                  <input
+                    type="password"
+                    id="inputPasswprd"
+                    name="password"
+                    ref={inputPasswordSignIn}
+                    readOnly
+                  />
+                </div>
+                <button className="edite-button">Edit Profile</button>
+                <button className="logOut-button" onClick={handleLogOut}>
+                  Log Out
+                </button>
               </div>
             </>
           ) : signUp ? (
@@ -249,24 +298,28 @@ export default function Header({ onSearch }) {
                 <span>{signUp.toUpperCase().charAt(0)}</span>
               </div>
               <div className="userInfo">
-                <label htmlFor="inputName">Name</label>
-                <input
-                  type="text"
-                  id="inputName"
-                  name="name"
-                  ref={inputNameSignUp} readOnly
-                />
-
                 <label htmlFor="inputEmail">Email</label>
                 <input
                   type="email"
                   id="inputEmail"
                   name="email"
-                  ref={inputEmailSignUp} readOnly
+                  ref={inputEmailSignUp}
+                  readOnly
                 />
-
+                <div>
+                  <label htmlFor="inputPasswprd">Password</label>
+                  <input
+                    type="password"
+                    id="inputPasswprd"
+                    name="password"
+                    ref={inputPasswordSignUp}
+                    readOnly
+                  />
+                </div>
                 <button>Edit Profile</button>
-                <button className="logOut-button" onClick={handleLogOut}>Log Out</button>
+                <button className="logOut-button" onClick={handleLogOut}>
+                  Log Out
+                </button>
               </div>
             </>
           ) : (
@@ -304,7 +357,7 @@ export default function Header({ onSearch }) {
                 height={15}
               />
             </button>
-            <button onClick={dropdownDeliver}>
+            <button onClick={dropdownDeliver} className="deliver-button">
               <img
                 className="localization"
                 src={localization}
