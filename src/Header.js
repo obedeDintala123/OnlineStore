@@ -33,7 +33,7 @@ export default function Header({ onSearch }) {
       inputEmailSignUp.current.value = userSignUpEmail || ""; // Previne valores nulos
     }
 
-    if(inputPasswordSignUp){
+    if(inputPasswordSignUp.current){
       inputPasswordSignUp.current.value = userSignUpPassword || ""; // Previne valores nulos
     }
   }, []);
@@ -41,6 +41,8 @@ export default function Header({ onSearch }) {
   const handleLogOut = () => {
     localStorage.removeItem("userLoginPassword");
     localStorage.removeItem("userLoginEmail");
+    localStorage.removeItem("userSignUpEmail");
+    localStorage.removeItem("userSignUpPassword");
     window.location.reload();
   };
 
