@@ -20,18 +20,16 @@ export default function SignIn() {
       if (!response.ok) {
         throw new Error('Erro na resposta da rede');
       }
-      return response.text(); // Retorna o texto bruto para inspeção
+      return response.json();
     })
-    .then((text) => {
-      console.log("Texto da resposta:", text); // Verifica o conteúdo do texto recebido
-      try {
-        const data = JSON.parse(text); // Tenta converter o texto para JSON
-        setLoginMessage(data.message);
-      } catch (error) {
-        console.error("Erro ao fazer parsing do JSON:", error);
-        setLoginMessage("Erro no servidor ou resposta inválida");
+
+    .then((data) => {
+      if(data.message === "Login successful"){
+        localStorage.setItem("userLoginEmail", email);
+        navegate("/");
       }
     })
+    
     .catch((error) => {
       console.error("Erro no fetch:", error);
       setLoginMessage("Erro de conexão ou no servidor");
