@@ -142,7 +142,7 @@ function Buy() {
 }
 export default function Produtos({ produtos }) {
   const [buy, setBuy] = useState(false);
-  const user = localStorage.getItem("userInitial");
+  const user = localStorage.getItem("userLoginEmail");
   let handleSignUp = (produto) => {
     if (user) {
       setBuy(true);

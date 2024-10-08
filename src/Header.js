@@ -11,8 +11,10 @@ import { useNavigate } from "react-router-dom";
 
 export default function Header({ onSearch }) {
   const navegate = useNavigate();
-  const signIn = localStorage.getItem("userInitial");
-  const signUp = localStorage.getItem("userInitial");
+  const userLoginEmail = localStorage.getItem("userLoginEmail");
+  const userLoginPassword = localStorage.getItem("userLoginPassword");
+  const userSignUpEmail = localStorage.getItem("userSignUpEmail");
+  const userSignUpPassword = localStorage.getItem("userSignUpPassword");
   const inputEmailSignIn = useRef();
   const inputEmailSignUp = useRef();
   const inputPasswordSignIn = useRef();
@@ -20,18 +22,26 @@ export default function Header({ onSearch }) {
 
   useEffect(() => {
     if (inputEmailSignIn.current) {
-      inputEmailSignIn.current.value = signIn || ""; // Previne valores nulos
+      inputEmailSignIn.current.value = userLoginEmail || ""; // Previne valores nulos
+    }
+
+    if(inputPasswordSignIn.current) {
+      inputPasswordSignIn.current.value = userLoginPassword || ""; // Previne valores nulos
     }
 
     if (inputEmailSignUp.current) {
-      inputEmailSignUp.current.value = signUp || ""; // Previne valores nulos
+      inputEmailSignUp.current.value = userSignUpEmail || ""; // Previne valores nulos
     }
-  }, [signIn, signUp]);
+
+    if(inputPasswordSignUp){
+      inputPasswordSignUp.current.value = userSignUpPassword || ""; // Previne valores nulos
+    }
+  }, []);
 
   const handleLogOut = () => {
-    localStorage.removeItem("userInitial");
-    localStorage.removeItem("userName");
-    navegate("/");
+    localStorage.removeItem("userLoginPassword");
+    localStorage.removeItem("userLoginEmail");
+    window.location.reload();
   };
 
   const handleSearch = (event) => {
@@ -202,16 +212,16 @@ export default function Header({ onSearch }) {
             </button>
           </form>
         </div>
-        {signIn ? (
+        {userLoginEmail ? (
           <div className="user-column">
             <div className="user-container">
-              <span>{signIn.toUpperCase().charAt(0)}</span>
+              <span>{userLoginEmail.toUpperCase().charAt(0)}</span>
             </div>
           </div>
-        ) : signUp ? (
+        ) : userSignUpEmail ? (
           <div className="user-column">
             <div className="user-container">
-              <span>{signUp.toUpperCase().charAt(0)}</span>
+              <span>{userSignUpEmail.toUpperCase().charAt(0)}</span>
             </div>
           </div>
         ) : (
@@ -260,10 +270,10 @@ export default function Header({ onSearch }) {
             </svg>
           </div>
 
-          {signIn ? (
+          {userLoginEmail ? (
             <>
               <div className="userNav-container">
-                <span>{signIn.toUpperCase().charAt(0)}</span>
+                <span>{userLoginEmail.toUpperCase().charAt(0)}</span>
               </div>
               <div className="userInfo">
                 <div>
@@ -292,10 +302,10 @@ export default function Header({ onSearch }) {
                 </button>
               </div>
             </>
-          ) : signUp ? (
+          ) : userSignUpEmail ? (
             <>
               <div className="userNav-container">
-                <span>{signUp.toUpperCase().charAt(0)}</span>
+                <span>{userSignUpEmail.toUpperCase().charAt(0)}</span>
               </div>
               <div className="userInfo">
                 <label htmlFor="inputEmail">Email</label>
@@ -316,7 +326,7 @@ export default function Header({ onSearch }) {
                     readOnly
                   />
                 </div>
-                <button>Edit Profile</button>
+                <button className="edite-button">Edit Profile</button>
                 <button className="logOut-button" onClick={handleLogOut}>
                   Log Out
                 </button>

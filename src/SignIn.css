@@ -57,10 +57,10 @@
   cursor: pointer;
 }
 
-.In-container .line-button{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.In-container .line-button {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .In-container .line-content {
@@ -89,39 +89,32 @@
   cursor: pointer;
 }
 
-.message-container {
-  width: 60%;
-  background: #fff;
-  padding: 10px 20px;
+.message-content {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
   /* Sombra leve para a parte superior */ 0 6px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  font-size: 20px;
+  gap: 30px;
+  padding: 20px 10px;
   position: absolute;
-  top: 10%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  animation: slowBottom 5s ease forwards;
 }
 
-@keyframes slowBottom {
-  0% {
-    top: -10%;
-  }
-
-  50%{
-    top: 10%;
-  }
-
-  100%{
-    top: -10%;
-  }
+.message-content button{
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  color: #3a89ff;
+  cursor: pointer;
+  background: none;
 }
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   .message-container {
     width: 100%;
     background: pink;
