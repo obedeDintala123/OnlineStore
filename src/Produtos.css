@@ -19,6 +19,7 @@
 }
 
 .lista-de-produtos {
+  width: 100%;
   padding: 0 40px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -229,7 +230,8 @@
   }
 
   .lista-de-produtos {
-    padding: 0 10px;
+    width: 100%;
+    padding: 0;
     gap: 0;
     display: grid;
     grid-template-columns: 1fr;
@@ -305,6 +307,13 @@
   .button-buy-now {
     padding: 10px 15px;
     font-size: 14px;
+  }
+
+  .lista-de-produtos {
+    padding: 0 10px;
+    gap: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .productView-content {
