@@ -96,7 +96,7 @@
   margin: auto;
   width: 100%;
   display: flex;
-  background: #3a89ff;
+  background: #fff;
 }
 
 .productView-content1 {
@@ -120,6 +120,7 @@
   flex-direction: column;
   gap: 20px;
   color: #fff;
+
 }
 
 .content2-produto-nome {
