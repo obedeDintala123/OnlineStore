@@ -1,7 +1,9 @@
 import "./Produtos.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Buy() {
+  const navegate = useNavigate();
   const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
   const [quantidade, setQuantidade] = useState(1);
   const resetButtonStyles = () => {
@@ -132,7 +134,7 @@ function Buy() {
             </div>
           </div>
           <div className="contente2-buttons">
-            <button className="buyNow-button">Buy Now</button>
+            <button className="buyNow-button" onClick={() => navegate("/payment") }>Buy Now</button>
             <button className="add-button">Add to Cart</button>
           </div>
         </div>
@@ -140,6 +142,7 @@ function Buy() {
     </div>
   );
 }
+
 export default function Produtos({ produtos }) {
   const [buy, setBuy] = useState(false);
   const user = localStorage.getItem("userLoginEmail");
