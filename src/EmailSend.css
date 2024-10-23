@@ -1,0 +1,30 @@
+.email-card{
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1),
+    /* Sombra leve para a parte superior */ 0 6px 20px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    gap: 20px;
+    background: #fff;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.email-card span{
+    font-size: 18px;
+    color: #3a89ff;
+}
+
+.email-card button{
+    padding: 5px;
+    border: none;
+    background: #3a89ff;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 2px;
+    cursor: pointer;
+}
