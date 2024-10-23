@@ -12,7 +12,7 @@ export default function Payment() {
     e.preventDefault();
     setLoading(true); // Mostra o loader ao iniciar o envio
 
-    fetch("http://localhost/BackEnd-OnlineStore/api/email.php", {
+    fetch("https://back-end-online-store.vercel.app/api/email.php", {
       method: 'POST',
       headers: {"Content-Type" : "application/json"},
       body: JSON.stringify({userLoginEmail: userLoginEmail, userSignUpEmail: userSignUpEmail})
