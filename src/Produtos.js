@@ -6,6 +6,7 @@ function Buy() {
   const navegate = useNavigate();
   const produto = JSON.parse(localStorage.getItem("produtoSelecionado"));
   const [quantidade, setQuantidade] = useState(1);
+
   const resetButtonStyles = () => {
     const allButtons = document.querySelectorAll(".size-button");
     allButtons.forEach((button) => {
@@ -14,9 +15,9 @@ function Buy() {
     });
   };
 
-  const loader = function(){
-    navegate('/payment');
-  }
+  const loader = () => {
+    navegate("/payment");
+  };
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -39,12 +40,7 @@ function Buy() {
 
   return (
     <div className="buy-container">
-      <button
-        className="back-button"
-        onClick={() => {
-          window.location.reload();
-        }}
-      >
+      <button className="back-button" onClick={() => navegate(-1)}>
         <svg
           color="#fff"
           xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +134,9 @@ function Buy() {
             </div>
           </div>
           <div className="contente2-buttons">
-            <button className="buyNow-button" onClick={loader}>Buy Now</button>
+            <button className="buyNow-button" onClick={loader}>
+              Buy Now
+            </button>
             <button className="add-button">Add to Cart</button>
           </div>
         </div>
