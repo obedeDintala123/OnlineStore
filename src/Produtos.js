@@ -14,6 +14,10 @@ function Buy() {
     });
   };
 
+  const loader = function(){
+    navegate('/payment');
+  }
+
   const handleClick = (event) => {
     event.preventDefault();
     resetButtonStyles();
@@ -134,7 +138,7 @@ function Buy() {
             </div>
           </div>
           <div className="contente2-buttons">
-            <button className="buyNow-button" onClick={() => navegate("/payment") }>Buy Now</button>
+            <button className="buyNow-button" onClick={loader}>Buy Now</button>
             <button className="add-button">Add to Cart</button>
           </div>
         </div>
@@ -147,7 +151,7 @@ export default function Produtos({ produtos }) {
   const [buy, setBuy] = useState(false);
   const userLogin = localStorage.getItem("userLoginEmail");
   const userSignUp = localStorage.getItem("userSignUpEmail");
-  
+
   let handleSignUp = (produto) => {
     if (userLogin || userSignUp) {
       setBuy(true);

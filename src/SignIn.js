@@ -38,6 +38,7 @@ export default function SignIn() {
         } else {
           setLoginMessage("Erro no login: " + data.message);
           setLoginSucess(false);
+          window.alert(loginMessage);
         }
       })
 
