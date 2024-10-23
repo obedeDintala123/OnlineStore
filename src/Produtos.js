@@ -145,9 +145,11 @@ function Buy() {
 
 export default function Produtos({ produtos }) {
   const [buy, setBuy] = useState(false);
-  const user = localStorage.getItem("userLoginEmail");
+  const userLogin = localStorage.getItem("userLoginEmail");
+  const userSignUp = localStorage.getItem("userSignUpEmail");
+  
   let handleSignUp = (produto) => {
-    if (user) {
+    if (userLogin || userSignUp) {
       setBuy(true);
       localStorage.setItem("produtoSelecionado", JSON.stringify(produto));
     } else {
