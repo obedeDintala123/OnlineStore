@@ -197,7 +197,6 @@ export default function Header({ onSearch }) {
         <div className="logo-search-content">
           <h1
             onClick={() => {
-              window.location.reload();
               navegate("/");
             }}
           >

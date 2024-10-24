@@ -8,6 +8,7 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import Payment from "./Payment";
 import EmailSend from "./EmailSend";
+import Buy from "./Buy";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/sign-in" element={<SignIn />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/buy-product" element={<Buy />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/email-send" element={<EmailSend />} />
       </Routes>
