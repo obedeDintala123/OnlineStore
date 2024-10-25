@@ -43,7 +43,7 @@ export default function Produtos({ produtos, addCart }) {
                       width={300}
                       height={300}
                     />
-                    <button className="button-cart" onClick={handleCart}>
+                    <button className="button-cart" onClick={() => handleCart(produto)}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
@@ -96,7 +96,7 @@ export default function Produtos({ produtos, addCart }) {
                     />
                     <button
                       className="button-cart"
-                      onClick={handleCart}
+                      onClick={() => handleCart(produto)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +147,7 @@ export default function Produtos({ produtos, addCart }) {
                     />
                     <button
                       className="button-cart"
-                      onClick={handleCart}
+                      onClick={() => handleCart(produto)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +168,7 @@ export default function Produtos({ produtos, addCart }) {
                       <button
                         type="button"
                         className="button-buy-now"
-                        onClick={handleCart}
+                        onClick={() => handleCart(produto)}
                       >
                         Buy Now
                       </button>
@@ -198,7 +198,7 @@ export default function Produtos({ produtos, addCart }) {
                     />
                     <button
                       className="button-cart"
-                      onClick={handleCart}
+                      onClick={() => handleCart(produto)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -219,7 +219,7 @@ export default function Produtos({ produtos, addCart }) {
                       <button
                         type="button"
                         className="button-buy-now"
-                        onClick={handleCart}
+                        onClick={() => handleCart(produto)}
                       >
                         Buy Now
                       </button>
@@ -249,7 +249,7 @@ export default function Produtos({ produtos, addCart }) {
                     />
                     <button
                       className="button-cart"
-                      onClick={handleCart}
+                      onClick={() => handleCart(produto)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -300,7 +300,7 @@ export default function Produtos({ produtos, addCart }) {
                     />
                     <button
                       className="button-cart"
-                      onClick={handleCart}
+                      onClick={() => handleCart(produto)}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

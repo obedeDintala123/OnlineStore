@@ -83,7 +83,7 @@ export default function App() {
             <h3>Shopping cart</h3>
             {carrinho.length > 0 ? (
               carrinho.map((item, index) => (
-                <>
+                <div>
                   <div className="carrinho-content" key={index}>
                     <div className="name-remove">
                       <p>{item.nome}</p>
@@ -121,7 +121,7 @@ export default function App() {
                       </svg>
                     </div>
                   </div>
-                </>
+                </div>
               ))
             ) : (
               <p>O carrinho está vazio.</p>
