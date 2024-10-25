@@ -8,8 +8,9 @@ import cart from "./Imagens-LojaOnline/carrinho-de-compras 1.svg";
 import "./Header.css";
 import { useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-export default function Header({ onSearch }) {
+export default function Header({ onSearch, carrinhoCount, handleCart}) {
   const navegate = useNavigate();
   const userLoginEmail = localStorage.getItem("userLoginEmail");
   const userLoginPassword = localStorage.getItem("userLoginPassword");
@@ -25,7 +26,7 @@ export default function Header({ onSearch }) {
       inputEmailSignIn.current.value = userLoginEmail || ""; // Previne valores nulos
     }
 
-    if(inputPasswordSignIn.current) {
+    if (inputPasswordSignIn.current) {
       inputPasswordSignIn.current.value = userLoginPassword || ""; // Previne valores nulos
     }
 
@@ -33,7 +34,7 @@ export default function Header({ onSearch }) {
       inputEmailSignUp.current.value = userSignUpEmail || ""; // Previne valores nulos
     }
 
-    if(inputPasswordSignUp.current){
+    if (inputPasswordSignUp.current) {
       inputPasswordSignUp.current.value = userSignUpPassword || ""; // Previne valores nulos
     }
   }, []);
@@ -391,10 +392,12 @@ export default function Header({ onSearch }) {
             <span>Favorites</span>
           </a>
           <a href="#" className="link-cart">
-            <img src={cart} alt="cart-icon" width={20} height={20} />
+            <img src={cart} alt="cart-icon" width={20} height={20} onClick={handleCart}/>
             <div className="cart-content">
-              <span className="cart-items">0</span>
-              <span className="cart-string">Cart</span>
+              <span className="cart-items">{carrinhoCount}</span>
+              <span className="cart-string" onClick={handleCart}>
+                Cart
+              </span>
             </div>
           </a>
         </div>
